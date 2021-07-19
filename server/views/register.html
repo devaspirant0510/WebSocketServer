@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="register-form">
+    <div> 닉네임
+        <label for="user-id">
+            <input id="user-id" name="user-id">
+        </label>
+        <button type="button" id="check-name-unique">
+            중복확인
+        </button>
+    </div>
+    <div>
+        아이디
+        <label for="id">
+            <input id="id" name="id">
+        </label>
+    </div>
+    <div> 비밀번호
+        <label for="pwd">
+            <input id="pwd" type="password" name="pwd">
+        </label>
+    </div>
+    <div> 비밀번호 확인
+        <label for="pwd-pwd">
+            <input id="pwd-pwd" type="password" name="pwd-pwd">
+        </label>
+    </div>
+    <div> 나이
+        <label for="age">
+            <input id="age" type="number" name="age">
+        </label>
+    </div>
+    <div> 남
+        <label for="male">
+            <input id="male" type="radio" name="gender" value="male">
+        </label>
+    </div>
+    <div> 여
+        <label for="female">
+            <input id="female" type="radio" name="gender" value="female">
+        </label>
+    </div>
+    <div>
+        <button type="submit"> 회원가입
+        </button>
+    </div>
+</form>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/register.js"></script>
+</body>
+</html>
