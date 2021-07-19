@@ -4,7 +4,7 @@
   "description": "Node.js Android",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.12",
+    "nunjucks": "^3.2.3",
     "sequelize": "^6.6.5",
     "sequelize-cli": "^6.2.0",
     "socket.io": "^2.4.1"
