@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/devaspirant0510/WebSocketServer/issues"
   },
-  "homepage": "https://github.com/devaspirant0510/WebSocketServer#readme"
+  "homepage": "https://github.com/devaspirant0510/WebSocketServer#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.12",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0",
+    "socket.io": "^2.4.1"
+  }
 }
