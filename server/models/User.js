@@ -3,7 +3,6 @@ module.exports  = (sequelize,DataTypes)=>{
         userId:{
             type:DataTypes.STRING(20),
             allowNull:false,
-            unique:true,
         },
         userPwd:{
             type:DataTypes.STRING(300),
@@ -11,7 +10,8 @@ module.exports  = (sequelize,DataTypes)=>{
         },
         userName:{
             type:DataTypes.STRING(20),
-            allowNull:true
+            allowNull:true,
+            unique:true,
         },
         age:{
             type:DataTypes.INTEGER,

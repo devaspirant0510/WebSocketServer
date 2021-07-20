@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.route("/")
     .get((req, res) => {
+        console.log(req.cookies);
         res.render("register")
 
     })
@@ -28,10 +29,8 @@ router.route("/")
                 userName:req.body.userName,
                 gender:req.body.gender
             });
-            console.log(req.body.age);
-            console.log(req.body.userPwd);
+            res.json({success:true});
         }
-
     });
 
 module.exports = router;

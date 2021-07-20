@@ -21,9 +21,12 @@ checkUniqueName.addEventListener("click",async ()=>{
         });
         if (result.data.isUnique){
             alert("사용할수 있는 이름입니다.");
+            inputId.focus();
             nameUnique=true;
         }else{
             alert("이미 존재하는 이름입니다.");
+            inputUserId.value = "";
+            inputUserId.focus();
             nameUnique = false;
         }
     }
@@ -50,7 +53,7 @@ registerForm.addEventListener("submit",async (evt)=>{
         alert("모두 입력해주세요");
     }
     else{
-        await axios.post("/register",{
+        const result = await axios.post("/register",{
             checkUnique:undefined,
             userId:inputId.value,
             userPwd:inputUserPwd.value,
@@ -58,6 +61,14 @@ registerForm.addEventListener("submit",async (evt)=>{
             age:inputAge.value,
             gender:radioMale.checked
         });
+        if(result.data.success){
+            alert("회원가입 성공! 로그인해주세요");
+            const home = await axios.get("/");
+            console.log(home);
+            history.pushState(null,null,"/");
+            location.reload();
+
+        }
         inputId.value = "";
         inputUserId.value="";
         inputUserPwdPwd.value="";
@@ -65,6 +76,7 @@ registerForm.addEventListener("submit",async (evt)=>{
         inputAge.value="";
         radioMale.checked=false;
         radioFemale.checked=false;
+
     }
 
 
