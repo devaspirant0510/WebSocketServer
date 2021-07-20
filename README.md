@@ -57,5 +57,10 @@ package.json
 package-lock.json
 socketServer.js
 ```
-
+# API 호출
+|function|method|url|body|
+|--------|------|---|----|
+|login|post|url:8080/login|{userId:(String),userPwd:(String)}|
+|register|post|url:8080/register|{checkUnique:false,userId:(String),userPwd:(String),age:(int),userName:(String,unique),gender:(boolean)}
+|check name isUnique|post|url:8080/register|{checkUnique:true,nickName:(String)}|
 
