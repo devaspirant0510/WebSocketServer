@@ -1,5 +1,4 @@
 const loginForm = document.querySelector("#login-form");
-const loginButton = document.querySelector("#login-button");
 const inputUserId = document.querySelector("#user-id");
 const inputUserPwd = document.querySelector("#pwd");
 
@@ -14,11 +13,13 @@ loginForm.addEventListener("submit",async (evt)=>{
         });
         if(isLogin.data.success){
             alert("로그인 성공")
-            history.pushState(null,null,"/chat");
+            history.pushState(null,null,"/");
             location.reload();
         }
         else{
             alert("아이디나 비밀번호를 다시 확인해보세요")
+            inputUserPwd.value = null;
+            inputUserId.value = null;
         }
 
     }

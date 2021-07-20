@@ -7,18 +7,27 @@
 <body>
 <h1>RealTime Chatting !!</h1>
 <h3>Hello World</h3>
-
-<form action="/register">
+{% if isLogin%}
+<h1>{{isLogin}}님 환영합니다.</h1>
+<form action="/chat">
+    <button type="submit">
+        join chatting room
+    </button>
+</form>
+{% else %}
+<form action="/register" id="register-form">
     <button type="submit">
         register
     </button>
 </form>
 
-<form action="/login">
+<form action="/login" id="login-form">
     <button type="submit">
         login
     </button>
 </form>
-
+{% endif%}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/main.js"></script>
 </body>
 </html>

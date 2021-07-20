@@ -17,13 +17,28 @@ chatForm.addEventListener("submit",(evt)=>{
         alert("입력해주세요");
     }
 })
-socket.on("message",data=>{
+socket.on("message",(user,data)=>{
     console.log(data);
     const div = document.createElement("div");
-    div.textContent = data;
+    div.textContent = user+":"+data;
     chatBody.append(div)
-})
+});
 socket.on("userCount",data=>{
     console.log(data);
     chatPeople.textContent = data+"명이 접속중";
+});
+socket.on("userJoin",(user,data)=>{
+    console.log(user,data)
+
+    const div = document.createElement("div");
+    div.textContent = user+":"+data;
+    chatBody.append(div)
+
+})
+socket.on("userOut",(user,data)=>{
+
+    const div = document.createElement("div");
+    div.textContent = user+":"+data;
+    chatBody.append(div)
+
 })

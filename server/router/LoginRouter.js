@@ -9,12 +9,19 @@ router.route("/")
     .post(async (req, res) => {
         try{
             const data =await User.findOne({
-                userId:req.body.userId,
-                pwd:req.body.pwd
+                where:{
+                    userId:req.body.userId,
+                    userPwd:req.body.pwd
+                }
             });
             if(data==null){
                 res.json({success:false});
             }else{
+                const key = new Date().getTime();
+                res.cookie("user",encodeURIComponent(req.body.userId),{
+                    httpOnly: true,
+                });
+                req.session.user = encodeURIComponent(req.body.userId);
                 res.json({success:true});
             }
         }catch (e){

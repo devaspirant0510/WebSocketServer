@@ -4,11 +4,13 @@ const router = express.Router();
 
 router.route("/")
     .get((req, res) => {
-        res.render("chatting",{name:req.cookies.user});
+        console.log(req.cookies.user)
+        res.render("index",{isLogin:req.cookies.user});
 
     })
     .post((req, res) => {
-        console.log(req.body.message);
+        console.log(req.cookies);
+
     });
 
 module.exports = router;
