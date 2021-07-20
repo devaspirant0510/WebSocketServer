@@ -4,7 +4,11 @@ const router = express.Router();
 
 router.route("/")
     .get((req, res) => {
-        res.render("chatting",{name:req.cookies.user});
+        if(req.cookies.user){
+            res.render("chatting",{name:req.cookies.user});
+        }else{
+            res.redirect("/");
+        }
 
     })
     .post((req, res) => {
