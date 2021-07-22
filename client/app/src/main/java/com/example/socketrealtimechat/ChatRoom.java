@@ -51,6 +51,7 @@ public class ChatRoom extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"입력해주세요",Toast.LENGTH_SHORT).show();
                 }else{
                     socket.emit("message",binding.etChatContent.getText().toString());
+                    binding.etChatContent.setText(null);
 
                 }
             }
@@ -74,15 +75,42 @@ public class ChatRoom extends AppCompatActivity {
         socket.on("message", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
+
                 Log.e(TAG, "call: "+args[0] );
+                String userName = (String)args[0];
+                String comment = (String)args[1];
                 new Handler(getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        arrayAdapter.add((String)args[0]);
+                        arrayAdapter.add((String)args[0]+" : "+(String)args[1]);
                         arrayAdapter.notifyDataSetChanged();
                     }
                 });
 
+            }
+        });
+        socket.on("userJoin", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        arrayAdapter.add((String)args[0]+" "+(String)args[1]);
+                        arrayAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        });
+        socket.on("userOut", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        arrayAdapter.add((String)args[0]+" "+(String)args[1]);
+                        arrayAdapter.notifyDataSetChanged();
+                    }
+                });
             }
         });
         socket.connect();
