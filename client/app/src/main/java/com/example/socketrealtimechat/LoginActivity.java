@@ -63,8 +63,13 @@ public class LoginActivity extends AppCompatActivity {
                     localSingleton.getClient().newCall(request).enqueue(new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
-                            Toast.makeText(LoginActivity.this, "문제가 있는것 같아요 개발자에게 문의하세요"
-                                    , Toast.LENGTH_SHORT).show();
+                            new Handler(getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(LoginActivity.this, "문제가 있는것 같아요 개발자에게 문의하세요"
+                                            , Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
 
                         @Override
@@ -74,23 +79,23 @@ public class LoginActivity extends AppCompatActivity {
                             if (response.body() != null) {
                                 Log.e(TAG, body);
                                 Gson gson = new Gson();
-                                LoginRequest loginRequest =gson.fromJson(body,LoginRequest.class);
-                                Log.e(TAG, "onResponse: "+loginRequest.isSuccess());
-                                if(loginRequest.isSuccess()){
+                                LoginRequest loginRequest = gson.fromJson(body, LoginRequest.class);
+                                Log.e(TAG, "onResponse: " + loginRequest.isSuccess());
+                                if (loginRequest.isSuccess()) {
                                     new Handler(getMainLooper()).post(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(LoginActivity.this,ChatRoom.class);
+                                            Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(LoginActivity.this, ChatRoom.class);
                                             startActivity(intent);
                                         }
                                     });
 
-                                }else{
+                                } else {
                                     new Handler(getMainLooper()).post(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(getApplicationContext(),"로그인 실패",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
                                             binding.etUserId.setText(null);
                                             binding.etUserPwd.setText(null);
                                         }
@@ -101,22 +106,21 @@ public class LoginActivity extends AppCompatActivity {
 
                             }
 
-                            }
-                        });
-
-                    }
+                        }
+                    });
 
                 }
-            });
-        binding.btnUserRegister.setOnClickListener(new View.OnClickListener()
-
-            {
-                @Override
-                public void onClick (View v){
 
             }
-            });
+        });
+        binding.btnUserRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
-        }
     }
+}
